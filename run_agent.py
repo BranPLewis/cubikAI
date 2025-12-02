@@ -11,7 +11,7 @@ def build_agent()->ToolCallingAgent:
     tools = [
         YoutubeTranscriptSearchTool(), 
         LocalTranscriptSearchTool(),
-        #RubiksCubeSolver(),
+        RubiksCubeSolver(),
         RubiksCubeStringVerifier(),
     ]
 

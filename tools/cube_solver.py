@@ -10,7 +10,7 @@ class RubiksCubeSolver(Tool):
             "This is a rubiks cube solver, using Kociemba's two stage solver package"
             "Required is a 54 character string representing a rubiks cube state in the format (URFDLB)"
             )
-    input = {
+    inputs = {
             "state": {
                 "type": "string",
                 "description": "The 54-character string representing the Rubik's Cube state."

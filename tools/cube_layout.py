@@ -16,7 +16,7 @@ class RubiksCubeStringVerifier(Tool):
     description = (
         """
         Tool to verify and convert Rubik's Cube state strings between positional
-        notation (U,D,L,R,B,F) and color-letter notation (Y,W,G,B,R,O).
+        notation (U,D,L,R,B,F) or (u,d,l,r,b,f) and color-letter notation (Y,W,G,B,R,O) or (y,w,g,b,r,o). If the string is lowercase, the is_valid methods will uppercase them before inputing them into the solver.
         Detection of which color corresponds to which face is done by reading
         the center (5th) character of each 9-character face block.
         Use this tool to format it correctly before using it as input for the 
@@ -133,7 +133,3 @@ class RubiksCubeStringVerifier(Tool):
             return state
         else:
             return "Error: Input state is neither a valid positional nor color-letter string (54 characters of UDLRBF or YWGBOR required)."
-        
-v = RubiksCubeStringVerifier()
-
-print(v.color_to_pos("WWRWWWGWRBRBOROGRYWGYRGGWGYOYROYGOYGGORROYBBBWBOYBBOBY"))
