@@ -1,0 +1,6 @@
+smolagents
+agent
+openai
+ddgs
+tinydb
+google-api-python-client
