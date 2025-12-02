@@ -13,7 +13,7 @@ def get_api_key(keyname):
         raise ValueError(msg)
     return api_key
 
-def google_build_reasoning_model(model_id = "gemini-2.5-flash"):
+def google_build_reasoning_model(model_id = "gemini-2.5-pro"):
     key_name = "GEMINI_API_KEY"
     api_base = "https://generativelanguage.googleapis.com/v1beta/openai/"
     api_key = get_api_key(key_name)

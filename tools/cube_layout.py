@@ -19,6 +19,8 @@ class RubiksCubeStringVerifier(Tool):
         notation (U,D,L,R,B,F) and color-letter notation (Y,W,G,B,R,O).
         Detection of which color corresponds to which face is done by reading
         the center (5th) character of each 9-character face block.
+        Use this tool to format it correctly before using it as input for the 
+        cube_solver.py kociemba two stage solver.
         """
     )
     inputs = {
@@ -33,6 +35,7 @@ class RubiksCubeStringVerifier(Tool):
         super().__init__()
 
     def is_valid_pos(self, state: str) -> bool:
+        state = state.upper()
         state = ''.join(state.split()).upper()
         if not isinstance(state, str) or len(state) != 54:
             return False
@@ -45,6 +48,7 @@ class RubiksCubeStringVerifier(Tool):
         return all(counts[c] == 9 for c in POS_CHARACTERS)
 
     def is_valid_color(self, state: str) -> bool:
+        state = state.upper()
         state = ''.join(state.split()).upper()
         if not isinstance(state, str) or len(state) != 54:
             return False
@@ -55,6 +59,7 @@ class RubiksCubeStringVerifier(Tool):
         # each color should appear exactly 9 times in a valid cube coloring
         counts = {c: state.count(c) for c in COLOR_CHARACTERS}
         return all(counts[c] == 9 for c in COLOR_CHARACTERS)
+
     def _derive_mapping_from_color_state(self, state: str) -> dict:
         """Derive a mapping from position letter -> color letter by reading
         the center (index 4) of each 9-character face block. Face order is

@@ -10,6 +10,13 @@ def init_database():
     if 'transcripts' not in tables:
         db.table('transcripts')
 
+def get_transcript_by_id(video_id: str) -> Dict | None:
+    """Checks if a transcript for a given video ID already exists."""
+    transcripts_table = db.table('transcripts')
+    Transcript = Query()
+    result = transcripts_table.search(Transcript.video_id == video_id)
+    return True if result else None
+
 def add_transcript(
     video_id: str,
     title: str,
@@ -38,8 +45,7 @@ def search_transcripts(keyword: str) -> List[Dict]:
     Transcript = Query()
     return transcripts_table.search(
         (Transcript.title.test(lambda x: keyword.lower() in x.lower())) |
-        (Transcript.transcript.test(lambda x: keyword.lower() in x.lower())) |
-        (Transcript.topic.test(lambda x: keyword.lower() in x.lower()))
+        (Transcript.transcript.test(lambda x: keyword.lower() in x.lower()))
     )
 
 def get_all_transcripts() -> List[Dict]:

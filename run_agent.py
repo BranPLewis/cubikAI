@@ -1,16 +1,18 @@
 import utilities, sys
 from smolagents import ToolCallingAgent
-from tools.web_tools_rev import YoutubeTranscriptSearchTool
+from tools.web_tools import YoutubeTranscriptSearchTool
 from tools.cube_solver import RubiksCubeSolver
 from tools.cube_layout import RubiksCubeStringVerifier
+from tools.cube_db_retrieval_tool import LocalTranscriptSearchTool
 
 def build_agent()->ToolCallingAgent:
     model = utilities.google_build_reasoning_model()
 
     tools = [
-        YoutubeTranscriptSearchTool(),
-        # RubiksCubeSolver(),
-        # RubiksCubeStringVerifier()
+        YoutubeTranscriptSearchTool(), 
+        LocalTranscriptSearchTool(),
+        #RubiksCubeSolver(),
+        RubiksCubeStringVerifier(),
     ]
 
     agent = ToolCallingAgent(
@@ -32,7 +34,7 @@ def main():
     agent = build_agent()
     print("Query:", query)
     result = agent.run(query)
-    print("\n-----------Final Answer-----------\n", result)
+    print("\n-----------Response-----------\n", result)
 
 if __name__ == "__main__":
     main()

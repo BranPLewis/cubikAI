@@ -4,3 +4,5 @@ openai
 ddgs
 tinydb
 google-api-python-client
+youtube-transcript-api
+gradio
